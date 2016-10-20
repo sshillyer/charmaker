@@ -48,6 +48,8 @@ var opts = {
 // Cite: https://zellwk.com/blog/crud-express-mongodb/
 var db;
 
+
+// Connect to MongoDB and launch app; on failure, log error and exit
 mongoose.connect(credentials.mongo.development.connectionString, function(err, database) {
     if (err) return console.log(err);
     
@@ -59,9 +61,12 @@ mongoose.connect(credentials.mongo.development.connectionString, function(err, d
 });
 
 
-
 //Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
     next();
 });
+
+
+// Import our various schemas so we can use them in the routes
+var Character = require('./models/characters.js');
