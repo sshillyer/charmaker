@@ -5,7 +5,12 @@ Description:    CS 496, Oregon State University
 
 "use strict";
 
-// Somewhat based on 'generator-api' yeoman generator design pattern
+// Routes paradigm used is based on Yeoman.io ('generator-api' package)
+// Basically, we set a main route and then each sub-route isset to use a file
+// nested in the 'model' folder. Each aspect of the URI model has its own
+// folder and route file, as well as a corresponding *-schema.js file to
+// designate the mongoose-style schema being used/enforced.
+
 const Router = require('express').Router;
 const router = new Router();    // Instantiate the router object
 
@@ -34,4 +39,5 @@ router.route('/charmaker').get((req,res, next) => {
 router.use('/charmaker/characters', characters);
 
 
+// Export all of router object back to caller in index.js
 module.exports = router;

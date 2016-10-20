@@ -16,8 +16,10 @@ const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 
+
 // Use submodule for routes
 const routes = require('./routes');
+
 
 // Import body-parser / setup (middleware for parsing POST content)
 const bodyParser = require('body-parser');
@@ -46,17 +48,17 @@ const opts = {
 };
 
 // Connect to MongoLab database and start server up
-// Cite: https://zellwk.com/blog/crud-express-mongodb/
+// Reference: https://zellwk.com/blog/crud-express-mongodb/
 // The db const is set here s owe have global access to it
 var db;
 
-// Connect to MongoDB and launch app; on failure, log error and exit
+// Connect to MongoDB and listen on port; if error, log and exit
 mongoose.connect(credentials.mongo.development.connectionString, function(err, database) {
     if (err) return console.log(err);
     
     db = database;  // Assign the connection to the db variable
     
-    const port = process.env.PORT || 8090;
+    const port = 8090;
     
     app.listen(port, function() {
         console.log('listening on ' + port)
@@ -64,11 +66,11 @@ mongoose.connect(credentials.mongo.development.connectionString, function(err, d
 });
 
 
-//Make our db accessible to our router
+// Make our db accessible to our router by setting this as first in chain
 app.use(function(req,res,next){
     req.db = db;
     next();
 });
 
-
+// Next set routes -- see routes.js file
 app.use('/', routes);
