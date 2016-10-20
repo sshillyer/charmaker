@@ -12,11 +12,16 @@ const router = new Router();    // Instantiate the router object
 // Each URI category has its own route file for more modularization
 const characters = require('./model/characters/characters-router');
 
+// Allow CORS
+router.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
+
 
 // Base URL route: API Landing page
-router.route('/chargen').get((req,res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+router.route('/charmaker').get((req,res, next) => {
     next();
     
     res.json({ 
@@ -26,7 +31,7 @@ router.route('/chargen').get((req,res, next) => {
 });
 
 // Top-level URI's
-router.use('/chargen/characters', characters);
+router.use('/charmaker/characters', characters);
 
 
 module.exports = router;

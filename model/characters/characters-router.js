@@ -9,9 +9,6 @@ const router = new Router();
 
 // Get route. Handles queries in formats /characters, /characters?race=orc, /characters?gender=male
 router.route('/').get((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    
     var race = req.query.race;
     var gender = req.query.gender;
     
@@ -44,9 +41,6 @@ router.route('/').get((req, res, next) => {
 
 // Get route to handle  /characters/1234  format. Returns a single character
 router.route('/:id').get((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    
     var requestedId = req.params.id;
     
     next();    
@@ -59,9 +53,6 @@ router.route('/:id').get((req, res, next) => {
 // Post route to handle  /characters  format post requests.
 // Returns the character built and its id as JSON
 router.route('/').post((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    
     var data = req.body;
     console.log(data);
         
