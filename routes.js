@@ -25,6 +25,7 @@ router.route('/chargen').get((req,res, next) => {
     });
 });
 
+// Top-level URI's
 router.use('/chargen/characters', characters);
 
 

@@ -7,40 +7,19 @@ Description:    CS 496, Oregon State University
 const Router = require('express').Router;
 const router = new Router();
 
-// Routes to handle /characters get request
+// Routes to handle /skills get request
 router.route('/').get((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     
-    var race = req.query.race;
-    var name = req.query.name;
+
     
-    // If searching by race:
-    if (typeof race != 'undefined') {
-            next();
-            res.json({ 
-                message: 'This will return all characters with race = ' + race,
-            });
-            return;
-    }
-    
-    // Else if searching by 
-    else if (typeof name != 'undefined') {
-            next();
-            res.json({ 
-                message: 'This will return all characters with race = ' + race,
-            });
-            return;
-    }
-    
-    // No querystring -> Return all characters
-    else {
-        next();
-        res.json({ 
-            message: 'This will return all characters after querying the db',
-        });        
-    }
+    next();    
+    res.json({ 
+        message: 'This will return all skills after querying the db',
+    });
 });
+
 
 router.route('/:id').get((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
