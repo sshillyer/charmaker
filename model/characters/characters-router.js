@@ -15,18 +15,19 @@ const router = new Router();
 // Get route. Handles queries in formats /characters (get all) or
 // with a querystring (/characters?race=Human&)
 router.route('/').get((req, res, next) => {
-        controller.find(req, res, next);
+    controller.find(req, res, next);
 });
 
 
 // Get route to handle  /characters/1234  format. Returns a single character
 router.route('/:id').get((req, res, next) => {
-    var requestedId = req.params.id;
-    
-//    next();    
-//    res.json({ 
-//        message: 'You asked for ' + requestedId + '.',
-//    });    
+    controller.findById(req, res, next);
+});
+
+
+// Put route to handle  /characters/1234  format. Returns the modified character
+router.route('/:id').put((req, res, next) => {
+    controller.update(req, res, next);
 });
 
 
@@ -34,14 +35,12 @@ router.route('/:id').get((req, res, next) => {
 // Returns the character built and its id as JSON
 router.route('/').post((req, res, next) => {
     var data = req.body;
+    console.log('Post request received:');
     console.log(data);
-        
-    next();    
-    res.json(data);
-//    res.json({ 
-//        message: 'POST request to post:' + (data),
-//    });
+    
+    controller.create(req, res, next);
 });
+
 
 
 module.exports = router;
