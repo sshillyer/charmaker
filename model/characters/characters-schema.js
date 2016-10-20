@@ -8,14 +8,16 @@ const   mongoose = require('mongoose'),
         Schema = mongoose.Schema;
 
 const charactersSchema = mongoose.Schema({
-    test: String,
+//    _id: Number,  // This is implied and inserted automatically by MongoDB
+    firstName: String,
+    lastName: String,
+    gender: String,
+    race: String,
+    skills: [String],
 });
 
 const Character = mongoose.model('Characters', charactersSchema);
 module.exports = Character;
-
-
-
 
 
 // Populate seed data if none exists
@@ -23,10 +25,26 @@ Character.find(function(err, characters) {
     if(characters.length) return;
    
     Character.create({
-        test: "Test value"
+        firstName: "Mafirst",
+        lastName: "Namislast",
+        gender: "Male",
+        race: "Orc",
+        skills: ["Punching", "Kicking", "Screaming"]
     }, function(err, character) {
         if(err) console.log(err);
         else console.log(character);
     });
+    
+        Character.create({
+        firstName: "Yoname",
+        lastName: "Ismyname",
+        gender: "Female",
+        race: "Human",
+        skills: ["Laughing", "Crying", "Talking"]
+    }, function(err, character) {
+        if(err) console.log(err);
+        else console.log(character);
+    });
+    
     
 });

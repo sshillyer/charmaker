@@ -4,8 +4,13 @@ Description:    CS 496, Oregon State University
 *******************************************************************************/
 "use strict";
 
+var path = require('path');
+var Character = require(path.resolve(__dirname, './characters-schema') );
+var controller = require('./characters-controller');
+
 const Router = require('express').Router;
 const router = new Router();
+
 
 // Get route. Handles queries in formats /characters, /characters?race=orc, /characters?gender=male
 router.route('/').get((req, res, next) => {
@@ -14,30 +19,32 @@ router.route('/').get((req, res, next) => {
     
     // If searching by race:
     if (typeof race != 'undefined') {
-            next();
-            res.json({ 
-                message: 'This will return all characters with race = ' + race,
-            });
-            return;
+        
+        
+        next();
+        res.json({ 
+            message: 'This will return all characters with race = ' + race,
+        });
+        return;
     }
     
     // Else if searching by gender:
     else if (typeof gender != 'undefined') {
-            next();
-            res.json({ 
-                message: 'This will return all characters with gender = ' + gender,
-            });
+        controller.find(req, res, next);
+//            next();
+//            res.json({ 
+//                message: 'This will return all characters with gender = ' + gender,
+//            });
             return;
     }
     
     // No querystring -> Return all characters
     else {
-        next();
-        res.json({ 
-            message: 'This will return all characters after querying the db',
-        });        
+        controller.find(req, res, next);
     }
 });
+
+
 
 // Get route to handle  /characters/1234  format. Returns a single character
 router.route('/:id').get((req, res, next) => {
@@ -57,22 +64,11 @@ router.route('/').post((req, res, next) => {
     console.log(data);
         
     next();    
-    res.json({ 
-        message: 'POST request to post:' + JSON.stringify(data),
-    });    
+    res.json(data);
+//    res.json({ 
+//        message: 'POST request to post:' + (data),
+//    });
 });
 
-
-
-
-// Scrap / sample code from yeoman generator
-//router.route('/')
-//  .get((arg1) => controller.find(arg1))
-//  .post((arg1) => controller.create(arg1));
-//
-//router.route('/:id')
-//  .put((arg1) => controller.update(arg1))
-//  .get((arg1) => controller.findById(arg1))
-//  .delete((arg1) => controller.remove(arg1));
 
 module.exports = router;

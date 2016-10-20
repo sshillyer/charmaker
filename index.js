@@ -47,6 +47,8 @@ const opts = {
     }
 };
 
+
+
 // Connect to MongoLab database and start server up
 // Reference: https://zellwk.com/blog/crud-express-mongodb/
 // The db const is set here s owe have global access to it
@@ -71,6 +73,7 @@ app.use(function(req,res,next){
     req.db = db;
     next();
 });
+
 
 // Next set routes -- see routes.js file
 app.use('/', routes);
