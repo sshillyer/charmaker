@@ -8,17 +8,19 @@ Description:    CS 496, Oregon State University
  * Middleware Setup
  ******************************************************************************/
 
-// Core middleware
+// Middleware
 var express = require('express');
 var app = express();
 var http = require('http');
 var mongoose = require('mongoose');
+var MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
+
 
 // Import body-parser / setup (middleware for parsing POST content)
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 
 /********************************************************************************
@@ -31,9 +33,6 @@ var credentials = require('./credentials.js');
 
 
 // Require in the mongoose modules, set connection string
-var mongoose = require('mongoose');
-var MongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectID;
 var url = credentials.mongo.development.connectionString;
 
 
@@ -46,17 +45,19 @@ var opts = {
 
 // Connect to MongoLab database and start server up
 // Cite: https://zellwk.com/blog/crud-express-mongodb/
+// The db var is set here s owe have global access to it
 var db;
-
 
 // Connect to MongoDB and launch app; on failure, log error and exit
 mongoose.connect(credentials.mongo.development.connectionString, function(err, database) {
     if (err) return console.log(err);
     
-    db = database;
+    db = database;  // Assign the connection to the db variable
     
-    app.listen(3000, function() {
-        console.log('listening on 3000')
+    var port = process.env.PORT || 8090;
+    
+    app.listen(port, function() {
+        console.log('listening on ' + port)
     });
 });
 
