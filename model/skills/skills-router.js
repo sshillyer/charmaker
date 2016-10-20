@@ -33,14 +33,4 @@ router.route('/:id').get((req, res, next) => {
 });
 
 
-// Scrap / sample code from yeoman generator
-//router.route('/')
-//  .get((arg1) => controller.find(arg1))
-//  .post((arg1) => controller.create(arg1));
-//
-//router.route('/:id')
-//  .put((arg1) => controller.update(arg1))
-//  .get((arg1) => controller.findById(arg1))
-//  .delete((arg1) => controller.remove(arg1));
-
 module.exports = router;
