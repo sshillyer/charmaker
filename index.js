@@ -2,19 +2,19 @@
 Author:         Shawn Hillyer
 Description:    CS 496, Oregon State University
 *******************************************************************************/
-"use strict"
+"use strict";
 
 /*******************************************************************************
  * Middleware Setup
  ******************************************************************************/
 
 // Middleware
-var express = require('express');
-var app = express();
-var http = require('http');
-var mongoose = require('mongoose');
-var MongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectID;
+const express = require('express');
+const app = express();
+const http = require('http');
+const mongoose = require('mongoose');
+const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID;
 
 
 // Import body-parser / setup (middleware for parsing POST content)
@@ -69,5 +69,5 @@ app.use(function(req,res,next){
 });
 
 
-// Import our various schemas so we can use them in the routes
-var Character = require('./models/characters.js');
+// Externalize routes into submodules
+const routes = require('./routes');
