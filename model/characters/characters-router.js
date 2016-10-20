@@ -7,13 +7,13 @@ Description:    CS 496, Oregon State University
 const Router = require('express').Router;
 const router = new Router();
 
-// Routes to handle /characters get request
+// Get route. Handles queries in formats /characters, /characters?race=orc, /characters?gender=male
 router.route('/').get((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     
     var race = req.query.race;
-    var name = req.query.name;
+    var gender = req.query.gender;
     
     // If searching by race:
     if (typeof race != 'undefined') {
@@ -24,11 +24,11 @@ router.route('/').get((req, res, next) => {
             return;
     }
     
-    // Else if searching by 
-    else if (typeof name != 'undefined') {
+    // Else if searching by gender:
+    else if (typeof gender != 'undefined') {
             next();
             res.json({ 
-                message: 'This will return all characters with race = ' + race,
+                message: 'This will return all characters with gender = ' + gender,
             });
             return;
     }
@@ -42,6 +42,7 @@ router.route('/').get((req, res, next) => {
     }
 });
 
+// Get route to handle  /characters/1234  format. Returns a single character
 router.route('/:id').get((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -53,6 +54,24 @@ router.route('/:id').get((req, res, next) => {
         message: 'You asked for ' + requestedId + '.',
     });    
 });
+
+
+// Post route to handle  /characters  format post requests.
+// Returns the character built and its id as JSON
+router.route('/').post((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    
+    var data = req.body;
+    console.log(data);
+        
+    next();    
+    res.json({ 
+        message: 'POST request to post:' + JSON.stringify(data),
+    });    
+});
+
+
 
 
 // Scrap / sample code from yeoman generator
