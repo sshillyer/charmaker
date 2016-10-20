@@ -9,12 +9,8 @@ Description:    CS 496, Oregon State University
 const Router = require('express').Router;
 const router = new Router();    // Instantiate the router object
 
-// Import our various schemas so we can use them in the routes
-const characters = require('./models/characters-schema');
-
-//router.route('/').get((req, res) => {
-//  res.json({ message: 'Welcome to chargen API!' });
-//});
+// Each URI category has its own route file for more modularization
+const characters = require('./model/characters/characters-router');
 
 
 // Base URL route: API Landing page
@@ -28,6 +24,8 @@ router.route('/chargen').get((req,res, next) => {
         version: "1.0",
     });
 });
+
+router.use('/chargen/characters', characters);
 
 
 module.exports = router;
