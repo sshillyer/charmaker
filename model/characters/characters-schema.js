@@ -5,7 +5,10 @@ Description:    CS 496, Oregon State University
 "use strict";
 
 const   mongoose = require('mongoose'),
-        Schema = mongoose.Schema;
+        Schema = mongoose.Schema,
+        ObjectId = mongoose.Schema.Types.ObjectId;
+
+const Skill = require('../skills/skills-schema');
 
 const charactersSchema = mongoose.Schema({
 //    _id: Number,  // This is implied and inserted automatically by MongoDB
@@ -13,7 +16,7 @@ const charactersSchema = mongoose.Schema({
     lastName: String,
     gender: String,
     race: String,
-    skills: [String],
+    skills: [ObjectId],
 });
 
 const Character = mongoose.model('Characters', charactersSchema);
@@ -29,7 +32,7 @@ Character.find(function(err, characters) {
         lastName: "Namislast",
         gender: "Male",
         race: "Orc",
-        skills: ["Punching", "Kicking", "Screaming"]
+//        skills: ["Punching", "Kicking", "Screaming"]
     }, function(err, character) {
         if(err) console.log(err);
         else console.log(character);
@@ -40,7 +43,7 @@ Character.find(function(err, characters) {
         lastName: "Ismyname",
         gender: "Female",
         race: "Human",
-        skills: ["Laughing", "Crying", "Talking"]
+//        skills: ["Laughing", "Crying", "Talking"]
     }, function(err, character) {
         if(err) console.log(err);
         else console.log(character);

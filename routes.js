@@ -16,6 +16,7 @@ const router = new Router();    // Instantiate the router object
 
 // Each URI category has its own route file for more modularization
 const characters = require('./model/characters/characters-router');
+const skills = require('./model/skills/skills-router');
 
 // Allow CORS
 router.all('/', function(req, res, next) {
@@ -37,7 +38,7 @@ router.route('/charmaker').get((req,res, next) => {
 
 // Top-level URI's
 router.use('/charmaker/characters', characters);
-
+router.use('/charmaker/skills', skills);
 
 // Export all of router object back to caller in index.js
 module.exports = router;
