@@ -14,9 +14,10 @@ var app = express();
 var http = require('http');
 var mongoose = require('mongoose');
 
-// Import credentials (passwords etc.)
-var credentials = require('./credentials.js');
-
+// Import body-parser / setup (middleware for parsing POST content)
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 
@@ -24,11 +25,17 @@ var credentials = require('./credentials.js');
  * Mongoose Setup
  ******************************************************************************/
 
+// Import credentials (passwords etc.)
+// Note: Always make sure to add database-level user (not just an Mlab.com user, for example)
+var credentials = require('./credentials.js');
+
+
 // Require in the mongoose modules, set connection string
 var mongoose = require('mongoose');
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 var url = credentials.mongo.development.connectionString;
+
 
 // Keeps the server alive when an error occurs
 var opts = {
