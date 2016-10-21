@@ -23,6 +23,7 @@ router.route('/').get((req, res, next) => {
 //    controller.find(req, res, next);
     if (req.body.skills != undefined) {
         console.log("Client wants to search on skills");
+        
     }
     
     Character.find(req.query)
@@ -34,7 +35,11 @@ router.route('/').get((req, res, next) => {
 
 // Get route to handle  /characters/1234  format. Returns a single character
 router.route('/:id').get((req, res, next) => {
-    controller.findById(req, res, next);
+//    controller.findById(req.params.id);
+    Character.findById(req.params.id)
+    .populate('skills', 'skill')
+    .then(doc => res.status(200).json(doc))
+    .catch(err => next(err));;
 });
 
 
