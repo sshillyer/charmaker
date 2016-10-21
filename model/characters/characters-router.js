@@ -22,11 +22,6 @@ const router = new Router();
 // Returns JSON with 'skills' array "populat"ed by _id and skill properties
 router.route('/').get((req, res, next) => {
 //    controller.find(req, res, next);
-//    if (req.body.skills != undefined) {
-//        console.log("Client wants to search on skills");
-//        
-//    }
-    
     Character.find(req.query)
     .populate('skills', 'skill')
     .then(doc => res.status(200).json(doc))
