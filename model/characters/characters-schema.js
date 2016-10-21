@@ -8,6 +8,7 @@ const   mongoose = require('mongoose'),
         Schema = mongoose.Schema,
         ObjectId = mongoose.Schema.Types.ObjectId;
 
+
 const Skill = require('../skills/skills-schema');
 
 const charactersSchema = mongoose.Schema({
@@ -28,26 +29,25 @@ Character.find(function(err, characters) {
     if(characters.length) return;
    
     Character.create({
-        firstName: "Mafirst",
-        lastName: "Namislast",
+        firstName: "Groc",
+        lastName: "Slamfist",
         gender: "Male",
         race: "Orc",
-//        skills: ["Punching", "Kicking", "Screaming"]
+//        skills: ['Athletics', 'Intimidation', 'Survival']
     }, function(err, character) {
         if(err) console.log(err);
         else console.log(character);
     });
     
         Character.create({
-        firstName: "Yoname",
-        lastName: "Ismyname",
+        firstName: "Iluv",
+        lastName: "Fyrespelz",
         gender: "Female",
         race: "Human",
-//        skills: ["Laughing", "Crying", "Talking"]
+//        skills: ['Arcana', 'Investigation', 'Medicine']
     }, function(err, character) {
         if(err) console.log(err);
         else console.log(character);
     });
-    
     
 });

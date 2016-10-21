@@ -7,12 +7,15 @@ Description:    CS 496, Oregon State University
 const   mongoose = require('mongoose'),
         Schema = mongoose.Schema,
         ObjectId = mongoose.Schema.Types.ObjectId;
+//        ObjId = mongoose.Types.ObjectId;
 
 const skillsSchema = mongoose.Schema({
-    _id: String,  // This is implied and inserted automatically by MongoDB
+//    _id: ObjectId,  // This is implied and inserted automatically by MongoDB
     skill: String,
     attribute: String,
 });
+
+
 
 
 const Skill = mongoose.model('Skills', skillsSchema);
@@ -24,7 +27,7 @@ Skill.find(function(err, skills) {
     if(skills.length) return;
 
     Skill.create({
-        _id: "Athletics",
+//        _id: ObjId("Athletics"),
 //        _id: 1,
         skill: "Athletics",
         attribute: "Strength",
@@ -34,7 +37,7 @@ Skill.find(function(err, skills) {
     });
 
     Skill.create({
-        _id: "Acrobatics",
+//        _id: "Acrobatics",
 //        _id: 1,
         skill: "Acrobatics",
         attribute: "Dexterity",
@@ -44,7 +47,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Animal Handling",
+//        _id: "Animal Handling",
 //        _id: 1,
         skill: "Animal Handling",
         attribute: "Wisdom",
@@ -54,7 +57,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Arcana",
+//        _id: "Arcana",
 //        _id: 1,
         skill: "Arcana",
         attribute: "Intelligence",
@@ -64,7 +67,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Deception",
+//        _id: "Deception",
 //        _id: 1,
         skill: "Deception",
         attribute: "Charisma",
@@ -74,7 +77,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "History",
+//        _id: "History",
 //        _id: 1,
         skill: "History",
         attribute: "Intelligence",
@@ -84,7 +87,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Insight",
+//        _id: "Insight",
 //        _id: 1,
         skill: "Insight",
         attribute: "Wisdom",
@@ -94,7 +97,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Intimidation",
+//        _id: "Intimidation",
 //        _id: 1,
         skill: "Intimidation",
         attribute: "Charisma",
@@ -104,7 +107,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Investigation",
+//        _id: "Investigation",
 //        _id: 1,
         skill: "Investigation",
         attribute: "Intelligence",
@@ -114,7 +117,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Nature",
+//        _id: "Nature",
 //        _id: 1,
         skill: "Nature",
         attribute: "Wisdom",
@@ -124,7 +127,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Perception",
+//        _id: "Perception",
 //        _id: 1,
         skill: "Perception",
         attribute: "Wisdom",
@@ -134,7 +137,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Performance",
+//        _id: "Performance",
 //        _id: 1,
         skill: "Performance",
         attribute: "Charisma",
@@ -144,7 +147,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Persuasion",
+//        _id: "Persuasion",
 //        _id: 1,
         skill: "Persuasion",
         attribute: "Charisma",
@@ -155,7 +158,7 @@ Skill.find(function(err, skills) {
 
     
     Skill.create({
-        _id: "Religion",
+//        _id: "Religion",
 //        _id: 1,
         skill: "Religion",
         attribute: "Wisdom",
@@ -165,7 +168,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Sleight of Hand",
+//        _id: "Sleight of Hand",
 //        _id: 1,
         skill: "Sleight of Hand",
         attribute: "Dexterity",
@@ -175,7 +178,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Stealth",
+//        _id: "Stealth",
 //        _id: 1,
         skill: "Stealth",
         attribute: "Dexterity",
@@ -185,7 +188,7 @@ Skill.find(function(err, skills) {
     });
     
     Skill.create({
-        _id: "Survival",
+//        _id: "Survival",
 //        _id: 1,
         skill: "Survival",
         attribute: "Wisdom",
