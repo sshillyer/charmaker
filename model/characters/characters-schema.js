@@ -17,11 +17,12 @@ const charactersSchema = mongoose.Schema({
     lastName: String,
     gender: String,
     race: String,
-    skills: [ObjectId],
+    skills: [{ type: ObjectId, ref: 'Skills'}],
 });
 
 const Character = mongoose.model('Characters', charactersSchema);
 module.exports = Character;
+
 
 
 // Populate seed data if none exists

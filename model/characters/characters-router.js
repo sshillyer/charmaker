@@ -21,7 +21,16 @@ const router = new Router();
 // Get route. Handles queries in formats /characters (get all) or
 // with a querystring (/characters?race=Human&)
 router.route('/').get((req, res, next) => {
-    controller.find(req, res, next);
+//    controller.find(req, res, next);
+    Character.find(req.query)
+    .populate('skills')
+//    .exec(function (err, person) {
+//        if(err) console.log(err);
+//        res.status(200).send();
+//    })
+    .then(doc => res.status(200).json(doc))
+    .catch(err => next(err));
+    
 });
 
 
@@ -40,18 +49,13 @@ router.route('/:id').put((req, res, next) => {
 // Post route to handle  /characters  format post requests.
 // Returns the character built and its id as JSON
 router.route('/').post((req, res, next) => {
-    var char = req.body;
-    var skills = char.skills;
-    console.log("*****Request*****")
-    console.log(char);
-    console.log("*****  END  *****")
-    
-    // ATTEMPT 3
-    
-    
-    
     controller.create(req, res, next);
     
+//    var char = req.body;
+//    var skills = char.skills;
+//    console.log("*****Request*****")
+//    console.log(char);
+//    console.log("*****  END  *****")
     
     // ATTEMPTE 2
     
@@ -78,7 +82,6 @@ router.route('/').post((req, res, next) => {
 //        });
 //    }
 
-    
     
     
     // ATTEMPT 1
