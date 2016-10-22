@@ -28,6 +28,14 @@ router.route('/').get((req, res, next) => {
     .catch(err => next(err));
 });
 
+// Return stats 400 for any PUT requests
+router.route('/').put((req, res, next) => {
+    res.status(400).json({
+        errorMessage: "Cannot PUT to /characters without valid id of character",
+        correctiveAction: "Send PUT to /characters/{id} to update values"
+    })
+});
+
 
 // Get route to handle  /characters/1234  format. 
 // Returns JSON of single character with skills array populated

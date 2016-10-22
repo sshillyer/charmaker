@@ -56,27 +56,26 @@ router.route('/charmaker').get((req,res, next) => {
 });
 
 // Send 400 error or post, update, and delete to the base url
-router.route('/charmaker')
-    .post((req,res, next) => {
+router.route('/charmaker').post((req,res, next) => {
     res.status(400).json({
         errorMessage: "Cannot POST to base URL, send GET for help",
     })
 });
 
-router.route('/charmaker')
-    .put((req,res, next) => {
+router.route('/charmaker').put((req,res, next) => {
     res.status(400).json({
         errorMessage: "Cannot PUT to base URL, send GET for help",
     })
 });
 
-router.route('/charmaker')
-    .delete((req,res, next) => {
+router.route('/charmaker').delete((req,res, next) => {
     res.status(400).json({
         errorMessage: "Cannot DELETE to base URL, send GET for help",
     })
 });
-// Top-level URI's
+
+
+// Set router to use *-routes.js files per beginning of file
 router.use('/charmaker/characters', characters);
 router.use('/charmaker/skills', skills);
 
