@@ -38,6 +38,7 @@ router.route('/charmaker').get((req,res, next) => {
     res.status(200).json({ 
         message: 'Welcome to charmaker API!',
         version: "1.0",
+        documentation: "https://github.com/sshillyer/charmaker",
         urls: {
             base: baseUrl,
             characters : {
@@ -54,6 +55,27 @@ router.route('/charmaker').get((req,res, next) => {
     });
 });
 
+// Send 400 error or post, update, and delete to the base url
+router.route('/charmaker')
+    .post((req,res, next) => {
+    res.status(400).json({
+        errorMessage: "Cannot POST to base URL, send GET for help",
+    })
+});
+
+router.route('/charmaker')
+    .put((req,res, next) => {
+    res.status(400).json({
+        errorMessage: "Cannot PUT to base URL, send GET for help",
+    })
+});
+
+router.route('/charmaker')
+    .delete((req,res, next) => {
+    res.status(400).json({
+        errorMessage: "Cannot DELETE to base URL, send GET for help",
+    })
+});
 // Top-level URI's
 router.use('/charmaker/characters', characters);
 router.use('/charmaker/skills', skills);
