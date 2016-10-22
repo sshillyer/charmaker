@@ -29,10 +29,28 @@ router.all('/', function(req, res, next) {
 // Base URL route: API Landing page
 router.route('/charmaker').get((req,res, next) => {
     next();
+    var baseUrl = "/charmaker";
+    var charRoot = "/characters";
+    var skillRoot = "/skills";
+    var idSuffix = "/{id}";
+    var querySuffix = "?{property}={value}";
     
-    res.json({ 
+    res.status(200).json({ 
         message: 'Welcome to charmaker API!',
         version: "1.0",
+        urls: {
+            base: baseUrl,
+            characters : {
+                base: baseUrl + charRoot,
+                id: baseUrl + charRoot + idSuffix,
+                query: baseUrl + charRoot + querySuffix,
+            },
+            skills : {
+                base: baseUrl + skillRoot,
+                id: baseUrl + skillRoot + idSuffix,
+                query: baseUrl + skillRoot + querySuffix,
+            }
+        }
     });
 });
 
