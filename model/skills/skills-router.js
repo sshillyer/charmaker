@@ -12,7 +12,7 @@ const Router = require('express').Router;
 const router = new Router();
 
 
-// Get route. Handles queries in formats /skills (get all) or
+// GET route. Handles queries in formats /skills (get all) or
 // with a querystring (/skills?skill=Arcana)
 router.route('/').get((req, res, next) => {
     controller.find(req, res, next);
@@ -23,6 +23,14 @@ router.route('/').put((req, res, next) => {
     res.status(400).json({
         errorMessage: 'Cannot PUT to /skills without valid id of skill',
         correctiveAction: "Send PUT to /skills/{id} to update values"
+    })
+});
+
+// DELETE route. Error message / status 400
+router.route('/').put((req, res, next) => {
+    res.status(400).json({
+        errorMessage: 'Cannot DELETE to /skills without valid id of skill',
+        correctiveAction: "Send DELETE to /skills/{id} to delete a skill"
     })
 });
 
