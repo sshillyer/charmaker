@@ -47,6 +47,11 @@ router.route('/:id').get((req, res, next) => {
     .catch(err => next(err));
 });
 
+router.route('/:id').post((req, res, next) => {
+    res.status(400).json({
+        errorMessage: "Cannot POST to /characters/{id}, use PUT to update or DELETE to delete or GET to retreieve",
+    })
+});
 
 // Put route to handle  /characters/1234  format. Returns the modified character
 router.route('/:id').put((req, res, next) => {
@@ -62,6 +67,16 @@ router.route('/:id').put((req, res, next) => {
         .catch(err => next(err));
     });
 });
+
+// DELETE character where {id} == Character._id
+router.route('/:id').delete((req, res, next) => {
+    Character.find({_id: req.params.id})
+    .remove().exec()
+    res.status(200).json({
+        message: 'Character with id ' + req.params.id + ' deleted'
+    })
+});
+
 
 
 // Post route to handle  /characters  format POST requests.
