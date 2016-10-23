@@ -82,7 +82,13 @@ router.route('/:id').delete((req, res, next) => {
 // Post route to handle  /characters  format POST requests.
 // Returns JSON of character inserted
 router.route('/').post((req, res, next) => {
-    controller.create(req, res, next);
+    if (req.params.length == 0)
+        controller.create(req, res, next);
+    else {
+        res.status(400).json({
+            errorMessage: "POST request to characters should not contain a query string. Send parameters in request body."
+        });
+    }
 });
 
 // DELETE route to handle a delete request to the base URL
