@@ -72,7 +72,15 @@ router.route('/:id').put((req, res, next) => {
 
 // DELETE route: /skills/{id}
 // Needs to delete refernces in character documents to this skil....
-
+router.route('/:id').delete((req, res, next) => {
+    var skillId = req.params.id;
+    Skill.find({_id: skillId})
+    .remove().exec()
+    
+    res.status(200).json({
+        message: 'Skill with id ' + skillId + ' deleted'
+    });
+});
 
 
 

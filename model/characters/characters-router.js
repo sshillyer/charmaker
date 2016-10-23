@@ -31,9 +31,10 @@ router.route('/').get((req, res, next) => {
 
 // POST route: /characters  (create new character)
 router.route('/').post((req, res, next) => {
-    if (req.params.length == 0)
+    if (req.params.length == 0 || req.params.length == undefined)
         controller.create(req, res, next);
     else {
+        console.log("req.params.length: " + req.params.length);
         res.status(400).json({
             errorMessage: "POST request to /characters should not contain a query string. Send parameters in request body."
         });
@@ -63,7 +64,7 @@ router.route('/').delete((req, res, next) => {
     }
     else {
         res.status(400).json({
-            errorMessage: "DLETE request to /characters should not contain a query string. Send parameters in request body."
+            errorMessage: "DELETE request to /characters should not contain a query string. Send parameters in request body."
         });
     }
 });
