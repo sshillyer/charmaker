@@ -49,15 +49,6 @@ router.route('/').put((req, res, next) => {
 });
 
 
-// GET route: /characters/1234
-router.route('/:id').get((req, res, next) => {
-    // Find characters with matching ID and return after populating references
-    Character.findById(req.params.id)
-    .populate('skills', 'skill')
-    .then(doc => res.status(200).json(doc))
-    .catch(err => next(err));
-});
-
 // DELETE route to handle a delete request to the base URL
 router.route('/').delete((req, res, next) => {
     if (req.params.length == 0) {
@@ -77,9 +68,22 @@ router.route('/').delete((req, res, next) => {
     }
 });
 
+
+
+
 /********************************************************
 * /characters/{id} handling
 /*******************************************************/
+
+// GET route: /characters/1234
+router.route('/:id').get((req, res, next) => {
+    // Find characters with matching ID and return after populating references
+    Character.findById(req.params.id)
+    .populate('skills', 'skill')
+    .then(doc => res.status(200).json(doc))
+    .catch(err => next(err));
+});
+
 
 // POST route: /characters{id}
 router.route('/:id').post((req, res, next) => {
