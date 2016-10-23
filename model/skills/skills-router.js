@@ -6,6 +6,8 @@ Description:    CS 496, Oregon State University
 
 var path = require('path');
 var Skill = require(path.resolve(__dirname, './skills-schema') );
+var Character = require('../characters/characters-schema');
+var charController = require('../characters/characters-controller');
 var controller = require('./skills-controller');
 
 const Router = require('express').Router;
@@ -71,17 +73,19 @@ router.route('/:id').put((req, res, next) => {
 });
 
 // DELETE route: /skills/{id}
-// Needs to delete refernces in character documents to this skil....
+// Also delete references in character documents to this skil....
 router.route('/:id').delete((req, res, next) => {
     var skillId = req.params.id;
+    
     Skill.find({_id: skillId})
     .remove().exec()
+    
+    Character.update( {}, {$pullAll: { skills: [skilliId] } } );
     
     res.status(200).json({
         message: 'Skill with id ' + skillId + ' deleted'
     });
 });
-
 
 
 

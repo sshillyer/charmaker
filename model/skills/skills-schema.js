@@ -15,7 +15,9 @@ const skillsSchema = mongoose.Schema({
     attribute: String,
 });
 
-
+skillsSchema.pre('remove', function(next) {
+   this.model('Characters').remove({skills: this._id }, next);
+});
 
 
 const Skill = mongoose.model('Skills', skillsSchema);
