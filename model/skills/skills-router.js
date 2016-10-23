@@ -80,13 +80,16 @@ router.route('/:id').delete((req, res, next) => {
     Skill.find({_id: skillId})
     .remove().exec()
     
-    Character.update( {}, {$pullAll: { skills: [skilliId] } } );
+    Character.update(
+        { skills: skillId },
+        { $pull: { 'skills' : {skills : {$in: [skillId] } } } });
+    
+//    Character.update( {skills: skillId}, {$pullAll: { skills: [skillId] } } );
     
     res.status(200).json({
         message: 'Skill with id ' + skillId + ' deleted'
     });
 });
-
 
 
 module.exports = router;

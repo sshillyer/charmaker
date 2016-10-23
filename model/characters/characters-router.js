@@ -52,7 +52,6 @@ router.route('/').put((req, res, next) => {
 
 // DELETE route to handle a delete request to the base URL
 router.route('/').delete((req, res, next) => {
-    if (req.params.length == 0) {
         Character.remove({})
         .then(doc => {
             if (!doc) { return res.status(404).end(); }
@@ -61,12 +60,6 @@ router.route('/').delete((req, res, next) => {
             });
         })
         .catch(err => next(err));
-    }
-    else {
-        res.status(400).json({
-            errorMessage: "DELETE request to /characters should not contain a query string. Send parameters in request body."
-        });
-    }
 });
 
 
