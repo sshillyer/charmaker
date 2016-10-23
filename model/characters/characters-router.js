@@ -88,7 +88,7 @@ router.route('/:id').get((req, res, next) => {
 // POST route: /characters{id}
 router.route('/:id').post((req, res, next) => {
     res.status(400).json({
-        errorMessage: "Cannot POST to /characters/{id}, use PUT to update or DELETE to delete or GET to retreieve",
+        errorMessage: "Cannot POST to /characters/{id}, use PUT to update or DELETE to delete or GET to retreive",
     })
 });
 

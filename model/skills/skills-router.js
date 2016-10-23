@@ -39,7 +39,7 @@ router.route('/').put((req, res, next) => {
 });
 
 // DELETE route: /skills Error message / status 400
-router.route('/').put((req, res, next) => {
+router.route('/').delete((req, res, next) => {
     res.status(400).json({
         errorMessage: 'Cannot DELETE to /skills without valid id of skill',
         correctiveAction: "Send DELETE to /skills/{id} to delete a skill"
@@ -58,6 +58,11 @@ router.route('/:id').get((req, res, next) => {
 });
 
 // POST route: /skills/{id}
+router.route('/:id').post((req, res, next) => {
+    res.status(400).json({
+        errorMessage: "Cannot POST to /skills/{id}, use PUT to update or DELETE to delete or GET to retreive",
+    })
+});
 
 
 // PUT route: /skills/{id}
