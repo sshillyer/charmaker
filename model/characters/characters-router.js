@@ -64,10 +64,22 @@ router.route('/:id').put((req, res, next) => {
 });
 
 
-// Post route to handle  /characters  format post requests.
+// Post route to handle  /characters  format POST requests.
 // Returns JSON of character inserted
 router.route('/').post((req, res, next) => {
     controller.create(req, res, next);
+});
+
+// DELETE route to handle a delete request to the base URL
+router.route('/').delete((req, res, next) => {
+   Character.remove({})
+   .then(doc => {
+       if (!doc) { return res.status(404).end(); }
+       res.status(200).json({ 
+        message : "All characters deleted"
+       });
+   })
+   .catch(err => next(err));
 });
 
 
