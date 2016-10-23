@@ -18,6 +18,13 @@ router.route('/').get((req, res, next) => {
     controller.find(req, res, next);
 });
 
+// PUT route returns error messagee and status 400
+router.route('/').put((req, res, next) => {
+    res.status(400).json({
+        errorMessage: 'Cannot PUT to /skills without valid id of skill',
+        correctiveAction: "Send PUT to /skills/{id} to update values"
+    })
+});
 
 // Get route to handle  /skills/1234  format. Returns a single skill
 router.route('/:id').get((req, res, next) => {

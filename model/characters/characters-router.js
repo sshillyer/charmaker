@@ -86,21 +86,28 @@ router.route('/').post((req, res, next) => {
         controller.create(req, res, next);
     else {
         res.status(400).json({
-            errorMessage: "POST request to characters should not contain a query string. Send parameters in request body."
+            errorMessage: "POST request to /characters should not contain a query string. Send parameters in request body."
         });
     }
 });
 
 // DELETE route to handle a delete request to the base URL
 router.route('/').delete((req, res, next) => {
-   Character.remove({})
-   .then(doc => {
-       if (!doc) { return res.status(404).end(); }
-       res.status(200).json({ 
-        message : "All characters deleted"
-       });
-   })
-   .catch(err => next(err));
+    if (req.params.length == 0) {
+        Character.remove({})
+        .then(doc => {
+            if (!doc) { return res.status(404).end(); }
+            res.status(200).json({
+                message : "All characters deleted"
+            });
+        })
+        .catch(err => next(err));
+    }
+    else {
+        res.status(400).json({
+            errorMessage: "DLETE request to /characters should not contain a query string. Send parameters in request body."
+        });
+    }
 });
 
 
